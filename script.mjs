@@ -46,6 +46,7 @@ window.onload = function () {
   if (!stored) {
     localStorage.setItem("stored-data-user", JSON.stringify(defaultUsers));
   }
+  let myAgenda;
 
   const users = JSON.parse(localStorage.getItem("stored-data-user"));
   const listUsers = getUserIds();
@@ -59,7 +60,12 @@ window.onload = function () {
   const container = document.getElementById("select-user");
   const select = document.createElement("select");
   select.id = "user-select";
-
+  const defaultOption = document.createElement("option");
+  defaultOption.value = "";
+  defaultOption.textContent = "Please choose a user";
+  defaultOption.disabled = true;
+  defaultOption.selected = true;
+  select.appendChild(defaultOption);
   users.map((user) => {
     const option = document.createElement("option");
     option.value = user.id;
@@ -73,7 +79,12 @@ window.onload = function () {
   const dateContainer = document.getElementById("select-date");
   const dateSelect = document.createElement("select");
   dateSelect.id = "date-select";
-
+  const defaultDateOption = document.createElement("option");
+  defaultDateOption.value = "";
+  defaultDateOption.textContent = "Please choose a user";
+  defaultDateOption.disabled = true;
+  defaultDateOption.selected = true;
+  dateSelect.appendChild(defaultDateOption);
   Object.entries(intervals).forEach(([label, days]) => {
     const option = document.createElement("option");
     option.value = days;
@@ -82,4 +93,29 @@ window.onload = function () {
   });
   dateContainer.appendChild(dateSelect);
   //end select user
+
+  select.addEventListener("change", () => {
+    const selectedId = parseInt(select.value);
+    const selectedUser = users.filter((user) => user.id === selectedId)[0];
+    console.log("Selected user:", selectedUser);
+    myAgenda = selectedUser?.agenda;
+    const agendaDisplay = document.getElementById("agenda-display");
+    agendaDisplay.innerHTML = "";
+
+    if (
+      !selectedUser ||
+      !selectedUser.agenda ||
+      selectedUser.agenda.length === 0
+    ) {
+      agendaDisplay.textContent = "No agenda data available.";
+    } else {
+      selectedUser.agenda.forEach(({ topic, date }, index) => {
+        const div = document.createElement("div");
+        div.textContent = `${topic} – ${date}`;
+        div.className =
+          index % 2 === 0 ? "agenda-item even" : "agenda-item odd";
+        agendaDisplay.appendChild(div);
+      });
+    }
+  });
 };

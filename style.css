@@ -41,6 +41,18 @@ h1 {
   border-radius: 6px;
   min-height: 100px;
 }
+.agenda-item {
+  padding: 0.5rem;
+}
+
+.agenda-item.even {
+  background-color: #f0f0f0;
+}
+
+.agenda-item.odd {
+  background-color: #ffffff;
+}
+
 @media (max-width: 500px) {
   .top-bar {
     flex-direction: column;
