@@ -96,7 +96,7 @@ window.onload = function () {
 
   select.addEventListener("change", () => {
     const selectedId = parseInt(select.value);
-    const selectedUser = users.filter((user) => user.id === selectedId)[0];
+    const selectedUser = users.find((user) => user.id === selectedId);
     console.log("Selected user:", selectedUser);
     myAgenda = selectedUser?.agenda;
     const agendaDisplay = document.getElementById("agenda-display");
