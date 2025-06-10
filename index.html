@@ -3,11 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>Spaced Repetition Tracker</title>
   </head>
   <body>
     <h1>Spaced Repetition Tracker</h1>
-    <div id="select-user"></div>
+    <div class="top-bar">
+      <div id="select-user"></div>
+      <!-- this will add differece time range -->
+      <!-- one week, one month, three months, six months and one year from the selected date -->
+      <div id="select-date">
+        <select></select>
+      </div>
+    </div>
+    <div id="agenda-display"></div>
     <script type="module" src="./script.mjs"></script>
   </body>
 </html>

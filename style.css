@@ -1,0 +1,48 @@
+body {
+  font-family: Arial, sans-serif;
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  background: #f9f9f9;
+  color: #333;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.top-bar {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  background-color: #fff;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-bottom: 1.5rem;
+}
+.top-bar > div {
+  flex: 1;
+}
+
+.top-bar select {
+  min-width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+#select-user {
+  margin-bottom: 1.5rem;
+}
+
+#agenda-display {
+  background: white;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 6px;
+  min-height: 100px;
+}
+@media (max-width: 500px) {
+  .top-bar {
+    flex-direction: column;
+  }
+}
