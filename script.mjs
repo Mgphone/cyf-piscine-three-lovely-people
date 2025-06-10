@@ -57,7 +57,7 @@ window.onload = function () {
   document.body.append(infoDiv);
 
   //start drop select user
-  const container = document.getElementById("select-user");
+  const selectUser = document.getElementById("select-user");
   const select = document.createElement("select");
   select.id = "user-select";
   const defaultOption = document.createElement("option");
