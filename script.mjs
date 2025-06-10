@@ -73,7 +73,7 @@ window.onload = function () {
     select.appendChild(option);
   });
 
-  container.appendChild(select);
+  selectUser.appendChild(select);
   //end select user
   //start date
   const dateContainer = document.getElementById("select-date");
@@ -81,7 +81,7 @@ window.onload = function () {
   dateSelect.id = "date-select";
   const defaultDateOption = document.createElement("option");
   defaultDateOption.value = "";
-  defaultDateOption.textContent = "Please choose a user";
+  defaultDateOption.textContent = "Please choose a selected date";
   defaultDateOption.disabled = true;
   defaultDateOption.selected = true;
   dateSelect.appendChild(defaultDateOption);
