@@ -33,6 +33,14 @@ const defaultUsers = [
     ],
   },
 ];
+const intervals = {
+  "1 Week": 7,
+  "1 Month": 30,
+  "3 Months": 90,
+  "6 Months": 180,
+  "1 Year": 365,
+};
+
 window.onload = function () {
   const stored = localStorage.getItem("stored-data-user");
   if (!stored) {
@@ -47,11 +55,12 @@ window.onload = function () {
   infoDiv.innerHTML = `There are ${listUsers.length} users`;
   document.body.append(infoDiv);
 
+  //start drop select user
   const container = document.getElementById("select-user");
   const select = document.createElement("select");
-  select.id = "userSelect";
+  select.id = "user-select";
 
-  users.forEach((user) => {
+  users.map((user) => {
     const option = document.createElement("option");
     option.value = user.id;
     option.textContent = user.name;
@@ -59,4 +68,18 @@ window.onload = function () {
   });
 
   container.appendChild(select);
+  //end select user
+  //start date
+  const dateContainer = document.getElementById("select-date");
+  const dateSelect = document.createElement("select");
+  dateSelect.id = "date-select";
+
+  Object.entries(intervals).forEach(([label, days]) => {
+    const option = document.createElement("option");
+    option.value = days;
+    option.textContent = label;
+    dateSelect.appendChild(option);
+  });
+  dateContainer.appendChild(dateSelect);
+  //end select user
 };

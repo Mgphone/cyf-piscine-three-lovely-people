@@ -1,3 +1,5 @@
 export function getUserIds() {
-  return ["1", "2", "3", "4", "5"];
+  const users = JSON.parse(localStorage.getItem("stored-data-user"));
+  return users.map((user) => user.id);
+  //   return ["1", "2", "3", "4", "5"];
 }
