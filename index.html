@@ -5,16 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
     <title>Spaced Repetition Tracker</title>
+    <script type="module" src="script.mjs"></script>
   </head>
   <body>
     <h1>Spaced Repetition Tracker</h1>
-    <div class="top-bar">
-      <div id="select-user"></div>
-      <!-- this will add differece time range -->
-      <!-- one week, one month, three months, six months and one year from the selected date -->
-      <div id="select-date"></div>
-    </div>
-    <div id="agenda-display"></div>
-    <script type="module" src="./script.mjs"></script>
+
+    <label for="user-select">Select User:</label>
+    <select id="user-select">
+      <option value="">-- Select a User --</option>
+    </select>
+
+    <section id="agenda-section"></section>
+
+    <form>
+      <div>
+        <label for="topic-name">Topic Name:</label>
+        <input type="text" id="topic-name" name="topic-name" required />
+      </div>
+      <div>
+        <label for="revision-date">Revision Start Date:</label>
+        <input type="date" id="revision-date" name="revision-date" required />
+      </div>
+      <button type="submit">Add Topic</button>
+    </form>
   </body>
 </html>

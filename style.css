@@ -1,60 +1,103 @@
+/* Basic Styles */
 body {
-  font-family: Arial, sans-serif;
-  max-width: 600px;
-  margin: 2rem auto;
-  padding: 0 1rem;
-  background: #f9f9f9;
+  margin: 0;
+  padding: 10px;
+  background-color: #f0f0f0;
   color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center content horizontally */
 }
 
 h1 {
-  text-align: center;
-  margin-bottom: 2rem;
+  color: #000;
+  margin-bottom: 20px;
+  font-size: 2em;
+  text-align: left;
+  padding-bottom: 5px;
+  max-width: 600px; /* Make heading smaller */
+  width: 100%; /* Ensure it respects max-width */
 }
-.top-bar {
-  display: flex;
-  flex-direction: row;
-  gap: 1rem;
+
+form {
   background-color: #fff;
-  padding: 1rem;
+  padding: 20px;
+  border-radius: 0;
+  box-shadow: none;
+  margin-top: 20px;
+  width: 100%;
+  max-width: 600px; /* Make form smaller */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+form div {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 5px;
+  font-weight: normal;
+  color: #333;
+}
+
+input[type="text"],
+input[type="date"],
+select {
+  padding: 8px;
   border: 1px solid #ccc;
-  border-radius: 6px;
-  margin-bottom: 1.5rem;
-}
-.top-bar > div {
-  flex: 1;
+  border-radius: 0;
+  font-size: 1em;
+  color: #333;
 }
 
-.top-bar select {
-  min-width: 100%;
-  padding: 0.5rem;
-  font-size: 1rem;
-}
-#select-user {
-  margin-bottom: 1.5rem;
-}
-
-#agenda-display {
-  background: white;
-  border: 1px solid #ddd;
-  padding: 1rem;
-  border-radius: 6px;
-  min-height: 100px;
-}
-.agenda-item {
-  padding: 0.5rem;
+button[type="submit"] {
+  background-color: #ddd;
+  color: #333;
+  padding: 10px 15px;
+  border: 1px solid #bbb;
+  border-radius: 0;
+  font-size: 1em;
+  font-weight: normal;
+  cursor: pointer;
+  box-shadow: none;
 }
 
-.agenda-item.even {
-  background-color: #f0f0f0;
+button:hover {
+  background-color: #ccc;
+  transform: none;
+  box-shadow: none;
 }
 
-.agenda-item.odd {
-  background-color: #ffffff;
+button:active {
+  transform: none;
+  box-shadow: none;
 }
 
-@media (max-width: 500px) {
-  .top-bar {
-    flex-direction: column;
-  }
+#user-select {
+  margin-bottom: 15px;
+  width: 100%;
+  max-width: 600px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 0;
+  font-size: 1em;
+  background-color: #fff;
+  box-shadow: none;
+}
+
+#agenda-section {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 0;
+  box-shadow: none;
+  margin-top: 15px;
+  width: 100%;
+  max-width: 600px;
+  min-height: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
