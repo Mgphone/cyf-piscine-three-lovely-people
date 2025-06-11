@@ -20,7 +20,7 @@ function setupUserDropdown() {
 }
 function loadUserAgenda(userId) {
   if (!userId) {
-    clearAgenda();
+    agendaSection.innerHTML = "";
     agendaSection.textContent = "Please select a user to see their agenda.";
     return;
   }
