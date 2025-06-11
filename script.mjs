@@ -18,6 +18,7 @@ function setupUserDropdown() {
   userSelect.value = "";
   agendaSection.textContent = "Please select a user to see their agenda.";
 }
+function displayAgenda(agendaItems) {}
 function loadUserAgenda(userId) {
   if (!userId) {
     agendaSection.innerHTML = "";
@@ -33,9 +34,14 @@ function loadUserAgenda(userId) {
     displayAgenda(agenda);
   }
 }
+function handleFormSubmit(e) {
+  e.preventDefault();
+  console.log("hello");
+}
 window.onload = function () {
   setupUserDropdown();
   userSelect.addEventListener("change", (e) => {
     loadUserAgenda(e.target.value);
   });
+  topicForm.addEventListener("submit", handleFormSubmit);
 };
