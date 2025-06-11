@@ -1,0 +1,103 @@
+/* Basic Styles */
+body {
+  margin: 0;
+  padding: 10px;
+  background-color: #f0f0f0;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center content horizontally */
+}
+
+h1 {
+  color: #000;
+  margin-bottom: 20px;
+  font-size: 2em;
+  text-align: left;
+  padding-bottom: 5px;
+  max-width: 600px; /* Make heading smaller */
+  width: 100%; /* Ensure it respects max-width */
+}
+
+form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 0;
+  box-shadow: none;
+  margin-top: 20px;
+  width: 100%;
+  max-width: 600px; /* Make form smaller */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+form div {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 5px;
+  font-weight: normal;
+  color: #333;
+}
+
+input[type="text"],
+input[type="date"],
+select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 0;
+  font-size: 1em;
+  color: #333;
+}
+
+button[type="submit"] {
+  background-color: #ddd;
+  color: #333;
+  padding: 10px 15px;
+  border: 1px solid #bbb;
+  border-radius: 0;
+  font-size: 1em;
+  font-weight: normal;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+button:hover {
+  background-color: #ccc;
+  transform: none;
+  box-shadow: none;
+}
+
+button:active {
+  transform: none;
+  box-shadow: none;
+}
+
+#user-select {
+  margin-bottom: 15px;
+  width: 100%;
+  max-width: 600px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 0;
+  font-size: 1em;
+  background-color: #fff;
+  box-shadow: none;
+}
+
+#agenda-section {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 0;
+  box-shadow: none;
+  margin-top: 15px;
+  width: 100%;
+  max-width: 600px;
+  min-height: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
