@@ -1,5 +1,6 @@
 import { getUserIds } from "./common.mjs";
 import { getData } from "./storage.mjs";
+import timeUntil from "./timeUntil.mjs";
 
 const userSelect = document.getElementById("user-select");
 const agendaSection = document.getElementById("agenda-section");
@@ -35,7 +36,7 @@ function loadUserAgenda(userId) {
     agendaSection.innerHTML = "<ol></ol>";
     agenda[userId].topics.forEach((topic) => {
       const li = document.createElement("li");
-      li.innerText = `Topic: ${topic.name} Date: ${topic.date}`;
+      li.innerText = `${topic.name} to be done in ${timeUntil(topic.date)}`;
       agendaSection.appendChild(li);
     });
   }
