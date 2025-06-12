@@ -32,7 +32,12 @@ function loadUserAgenda(userId) {
   if (!agenda || agenda.length === 0) {
     agendaSection.textContent = "No agenda found for this user.";
   } else {
-    displayAgenda(agenda);
+    agendaSection.innerHTML = "<ol></ol>";
+    agenda[userId].topics.forEach((topic) => {
+      const li = document.createElement("li");
+      li.innerText = `Topic: ${topic.name} Date: ${topic.date}`;
+      agendaSection.appendChild(li);
+    });
   }
 }
 
