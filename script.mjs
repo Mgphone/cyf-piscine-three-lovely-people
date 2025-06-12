@@ -6,6 +6,7 @@ const agendaSection = document.getElementById("agenda-section");
 const topicForm = document.getElementById("topic-form");
 const topicNameInput = document.getElementById("topic-name");
 const revisionDateInput = document.getElementById("revision-date");
+
 function setupUserDropdown() {
   const users = getUserIds();
 
@@ -18,6 +19,7 @@ function setupUserDropdown() {
   userSelect.value = "";
   agendaSection.textContent = "Please select a user to see their agenda.";
 }
+
 function loadUserAgenda(userId) {
   if (!userId) {
     agendaSection.innerHTML = "";
@@ -33,6 +35,7 @@ function loadUserAgenda(userId) {
     displayAgenda(agenda);
   }
 }
+
 window.onload = function () {
   setupUserDropdown();
   userSelect.addEventListener("change", (e) => {
