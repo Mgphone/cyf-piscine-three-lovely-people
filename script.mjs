@@ -18,6 +18,14 @@ function setupUserDropdown() {
   userSelect.value = "";
   agendaSection.textContent = "Please select a user to see their agenda.";
 }
+function displayAgenda(agendaItems) {
+  // 1.clear old list
+  // 2.check with today date.
+  // 3keep only future items.
+  // 4if nothing show(no agenda
+  //   5.sort list with date order
+  //   6.show the list
+}
 function loadUserAgenda(userId) {
   if (!userId) {
     agendaSection.innerHTML = "";
@@ -33,9 +41,14 @@ function loadUserAgenda(userId) {
     displayAgenda(agenda);
   }
 }
+function handleFormSubmit(e) {
+  e.preventDefault();
+  console.log("hello");
+}
 window.onload = function () {
   setupUserDropdown();
   userSelect.addEventListener("change", (e) => {
     loadUserAgenda(e.target.value);
   });
+  topicForm.addEventListener("submit", handleFormSubmit);
 };
