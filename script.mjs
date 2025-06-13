@@ -16,7 +16,10 @@ function generateRevisionDates(startDate) {
     return revisionDate.toISOString().split("T")[0];
   });
 }
-
+function changeUKformat(date) {
+  let splitDate = date.split("-");
+  return `${splitDate[2]}-${splitDate[1]}-${splitDate[0]}`;
+}
 function setupUserDropdown() {
   const users = getUserIds();
 
@@ -30,12 +33,23 @@ function setupUserDropdown() {
   agendaSection.textContent = "Please select a user to see their agenda.";
 }
 function displayAgenda(agendaItems) {
-  // 1.clear old list
-  // 2.check with today date.
-  // 3keep only future items.
-  // 4if nothing show(no agenda
-  //   5.sort list with date order
-  //   6.show the list
+  agendaSection.innerHTML = "";
+  if (agendaItems.length === 0) {
+    const messageDiv = document.createElement("div");
+    messageDiv.className = "no-agenda-message";
+    const boldText = document.createElement("b");
+    boldText.append("No upcoming agenda items.");
+    messageDiv.appendChild(boldText);
+    agendaSection.appendChild(messageDiv);
+    return;
+  }
+  const list = document.createElement("ul");
+  agendaItems.forEach((item) => {
+    const listItem = document.createElement("li");
+    listItem.textContent = `${changeUKformat(item.date)}: ${item.topic}`;
+    list.appendChild(listItem);
+  });
+  agendaSection.appendChild(list);
 }
 function loadUserAgenda(userId) {
   if (!userId) {
@@ -64,7 +78,6 @@ window.onload = function () {
   // Function for form submission
   topicForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    console.log("topicForm", topicForm);
     // Start with today's date
     const dateToday = new Date().toISOString().split("T")[0];
 
@@ -91,5 +104,4 @@ window.onload = function () {
 
     loadUserAgenda(userId); // Reload the user's agenda to reflect the new entries
   });
-
 };
