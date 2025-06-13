@@ -8,13 +8,41 @@ const topicNameInput = document.getElementById("topic-name");
 const revisionDateInput = document.getElementById("revision-date");
 
 function generateRevisionDates(startDate) {
-  const intervals = [7, 30, 90, 180, 365]; // in days
-  const baseDate = new Date(startDate + "T00:00:00");
-  return intervals.map((days) => {
+  const intervals = [
+    { type: "week", amount: 1 },
+    { type: "month", amount: 1 },
+    { type: "month", amount: 3 },
+    { type: "month", amount: 6 },
+    { type: "year", amount: 1 },
+  ];
+  const baseDate = new Date(startDate);
+  const originalDay = baseDate.getDate();
+  return intervals.map(({ type, amount }) => {
     const revisionDate = new Date(baseDate);
-    revisionDate.setDate(revisionDate.getDate() + days);
+    if (type === "week") {
+      revisionDate.setDate(revisionDate.getDate() + amount * 7);
+    } else if (type === "month") {
+      revisionDate.setMonth(revisionDate.getMonth() + amount);
+      revisionDate.setDate(
+        Math.min(
+          originalDay,
+          daysInMonth(revisionDate.getFullYear(), revisionDate.getMonth())
+        )
+      );
+    } else if (type === "year") {
+      revisionDate.setFullYear(revisionDate.getFullYear() + amount);
+      revisionDate.setDate(
+        Math.min(
+          originalDay,
+          daysInMonth(revisionDate.getFullYear(), revisionDate.getMonth())
+        )
+      );
+    }
     return revisionDate.toISOString().split("T")[0];
   });
+}
+function daysInMonth(year, month) {
+  return new Date(year, month + 1, 0).getDate();
 }
 function changeUKformat(date) {
   let splitDate = date.split("-");
@@ -57,13 +85,11 @@ function loadUserAgenda(userId) {
     agendaSection.textContent = "Please select a user to see their agenda.";
     return;
   }
-
   const agenda = getData(userId) || [];
   const today = new Date().toISOString().split("T")[0];
   const futureAgenda = agenda
     .filter((item) => item.date >= today)
     .sort((a, b) => a.date.localeCompare(b.date));
-
   displayAgenda(futureAgenda);
 }
 window.onload = function () {
@@ -71,20 +97,15 @@ window.onload = function () {
   userSelect.addEventListener("change", (e) => {
     loadUserAgenda(e.target.value);
   });
-  // Default date picker to today's date when the page loads
   const todaysDate = new Date().toISOString().split("T")[0];
   revisionDateInput.value = todaysDate;
 
-  // Function for form submission
   topicForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    // Start with today's date
     const dateToday = new Date().toISOString().split("T")[0];
-
     const userId = userSelect.value;
     const topic = topicNameInput.value.trim();
     const startDate = revisionDateInput.value;
-
     if (!userId) {
       alert("Please select a user first.");
       return;
@@ -93,15 +114,11 @@ window.onload = function () {
       alert("Please enter both a topic and a date.");
       return;
     }
-
     const revisionDates = generateRevisionDates(startDate);
-    const newItems = revisionDates.map((date) => ({ topic, date })); // Converts each revision date into an object
-
-    addData(userId, newItems); // Stores all the new agenda entries for the selected user
-
-    topicNameInput.value = ""; // Reset the form after submission
-    revisionDateInput.value = dateToday; // Reset the date picker to today after submission
-
-    loadUserAgenda(userId); // Reload the user's agenda to reflect the new entries
+    const newItems = revisionDates.map((date) => ({ topic, date }));
+    addData(userId, newItems);
+    topicNameInput.value = "";
+    revisionDateInput.value = dateToday;
+    loadUserAgenda(userId);
   });
 };
