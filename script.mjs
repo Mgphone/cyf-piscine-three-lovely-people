@@ -1,16 +1,19 @@
 import { getUserIds } from "./common.mjs";
-import { getData, addData } from "./storage.mjs";
+import { getData, addData, clearData } from "./storage.mjs";
 import { generateRevisionDatesUTC } from "./utils/generateRevisionDatesUTC.mjs";
+//this is DOM elements
 const userSelect = document.getElementById("user-select");
 const agendaSection = document.getElementById("agenda-section");
 const topicForm = document.getElementById("topic-form");
 const topicNameInput = document.getElementById("topic-name");
 const revisionDateInput = document.getElementById("revision-date");
+const clearBtn = document.getElementById("clear-storage-btn");
 
 function changeUKformat(date) {
   let splitDate = date.split("-");
   return `${splitDate[2]}-${splitDate[1]}-${splitDate[0]}`;
 }
+//select drop with userId
 function setupUserDropdown() {
   const users = getUserIds();
   users.forEach((userId) => {
@@ -22,6 +25,7 @@ function setupUserDropdown() {
   userSelect.value = "";
   agendaSection.textContent = "Please select a user to see their agenda.";
 }
+//display agenda
 function displayAgenda(agendaItems) {
   agendaSection.innerHTML = "";
   if (agendaItems.length === 0) {
@@ -41,6 +45,7 @@ function displayAgenda(agendaItems) {
   });
   agendaSection.appendChild(list);
 }
+//if there is userId and loadUser agenda
 function loadUserAgenda(userId) {
   if (!userId) {
     agendaSection.innerHTML = "";
@@ -54,6 +59,7 @@ function loadUserAgenda(userId) {
     .sort((a, b) => a.date.localeCompare(b.date));
   displayAgenda(futureAgenda);
 }
+//window onload and the function start from here
 window.onload = function () {
   setupUserDropdown();
   userSelect.addEventListener("change", (e) => {
@@ -82,5 +88,23 @@ window.onload = function () {
     topicNameInput.value = "";
     revisionDateInput.value = dateToday;
     loadUserAgenda(userId);
+  });
+  //clear user data
+  clearBtn.addEventListener("click", () => {
+    const userId = userSelect.value;
+    if (!userId) {
+      alert("Please select a user to clear data.");
+      return;
+    }
+    const storedDataKey = `stored-data-user-${userId}`;
+    const existingData = localStorage.getItem(storedDataKey);
+    if (!existingData) {
+      alert(`No data found for user ${userId}.`);
+      return;
+    }
+    clearData(userId);
+    agendaSection.innerHTML = "";
+    topicForm.reset();
+    alert(`Data for user ${userId} has been cleared.`);
   });
 };
