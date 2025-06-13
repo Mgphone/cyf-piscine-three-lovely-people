@@ -101,3 +101,16 @@ button:active {
   flex-direction: column;
   gap: 10px;
 }
+
+#agenda-section li:nth-child(even) {
+  background-color: #fff;
+}
+
+#agenda-section li:nth-child(odd) {
+  background-color: #ccc;
+}
+
+#agenda-section li {
+  padding: 8px 12px;
+  border-bottom: 1px solid #1ef;
+}
