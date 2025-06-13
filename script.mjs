@@ -29,6 +29,14 @@ function setupUserDropdown() {
   userSelect.value = "";
   agendaSection.textContent = "Please select a user to see their agenda.";
 }
+function displayAgenda(agendaItems) {
+  // 1.clear old list
+  // 2.check with today date.
+  // 3keep only future items.
+  // 4if nothing show(no agenda
+  //   5.sort list with date order
+  //   6.show the list
+}
 function loadUserAgenda(userId) {
   if (!userId) {
     agendaSection.innerHTML = "";
@@ -44,7 +52,6 @@ function loadUserAgenda(userId) {
 
   displayAgenda(futureAgenda);
 }
-
 window.onload = function () {
   setupUserDropdown();
   userSelect.addEventListener("change", (e) => {
@@ -84,4 +91,5 @@ window.onload = function () {
 
     loadUserAgenda(userId); // Reload the user's agenda to reflect the new entries
   });
+
 };
